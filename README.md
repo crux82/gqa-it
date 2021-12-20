@@ -1,149 +1,108 @@
 # GQA-it
-## A large scale dataset for Italian Question Answering on Image Scene Graphs
+## Italian Question Answering on Image Scene Graphs
+
+GQA-it is a **large-scale Italian dataset for Visual Question Answering** based on the balanced version of [GQA](https://cs.stanford.edu/people/dorarad/gqa/about.html).
+
+GQA-it contains more than **1 million question/answer pairs in Italian over 80K images** obtained by applying Neural Machine Translation. $3,000$ question-answer pairs have been manually validated to provide a valuable benchmark.
+
+GQA-it has been used to adapt to Italian the [LXMERT](https://github.com/airsplay/lxmert) state-of-the-art VQA neural architecture, and the resuts have shown comparable results between English and Italian models. More details about GQA-it can be found in the original paper [Croce et al. 2021](http://ceur-ws.org/Vol-3033/paper42.pdf).
 
 
-[GQA](https://cs.stanford.edu/people/dorarad/gqa) [Rajpurkar et al. 2016]  is a large scale dataset for training of question answering systems on factoid questions. 
-It contains more than 100,000 question-answer pairs about passages from 536 articles chosen from various domains of Wikipedia. 
+This repository is organized as follows:
 
-**SQuAD-it** is derived from the SQuAD dataset and it is obtained through semi-automatic translation of the SQuAD dataset 
-into Italian. It represents a large-scale dataset for open question answering processes on factoid questions in Italian. 
-**The dataset contains more than 60,000 question/answer pairs derived from the original English dataset.** The dataset is split into training and test sets to support the replicability of the benchmarking of QA systems:
-
-* `SQuAD_it-train.json`: it contains training examples derived from the original SQuAD 1.1 trainig material. 
-* `SQuAD_it-test.json`: it contains test/benchmarking examples derived from the origial SQuAD 1.1 development material. 
-
-More details about SQuAD-it can be found in [Croce et al. 2018]. The original paper can be found at this [link](https://link.springer.com/chapter/10.1007/978-3-030-03840-3_29).
+* `train.json.gz` is a compressed version of the json training file. It contains training examples derived from the original GQA trainig material (balanced version). 
+* `testdev3k_validated.json.gz` is a compressed file containing  3000 manually validated test/benchmarking examples derived from the origial GQA development material. 
+* `valid.json.gz` is a compressed version of the json development file derived from the original GQA validation material (balanced version)
+* `trainval_label2ans.json.gz`
+* `trainval_ans2label.json.gz`
 
 
+### How to cite GQA-it
 
-### How to cite SQuAD-it
 
-
-If you find SQuAD-it useful for your research, please cite the following paper:
+If you find GQA-it useful for your research, please cite the following paper:
 
 ~~~~
-@InProceedings{10.1007/978-3-030-03840-3_29,
-	author="Croce, Danilo and Zelenanska, Alexandra and Basili, Roberto",
-	editor="Ghidini, Chiara and Magnini, Bernardo and Passerini, Andrea and Traverso, Paolo",
-	title="Neural Learning for Question Answering in Italian",
-	booktitle="AI*IA 2018 -- Advances in Artificial Intelligence",
-	year="2018",
-	publisher="Springer International Publishing",
-	address="Cham",
-	pages="389--402",
-	isbn="978-3-030-03840-3"
-}
-~~~~
+@inproceedings{DBLP:conf/clic-it/CrocePL021,
+  author    = {Danilo Croce and
+               Lucia C. Passaro and
+               Alessandro Lenci and
+               Roberto Basili},
+  editor    = {Elisabetta Fersini and
+               Marco Passarotti and
+               Viviana Patti},
+  title     = {GQA-it: Italian Question Answering on Image Scene Graphs},
+  booktitle = {Proceedings of the Eighth Italian Conference on Computational Linguistics,
+               CLiC-it 2021, Milan, Italy, January 26-28, 2022},
+  series    = {{CEUR} Workshop Proceedings},
+  volume    = {3033},
+  publisher = {CEUR-WS.org},
+  year      = {2021},
+  url       = {http://ceur-ws.org/Vol-3033/paper42.pdf},
+  timestamp = {Wed, 15 Dec 2021 17:49:17 +0100},
+  biburl    = {https://dblp.org/rec/conf/clic-it/CrocePL021.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}~~~~
 
 
 ## Download
 
-To download the SQuAD-it dataset, please refer to [https://github.com/crux82/squad-it](https://github.com/crux82/squad-it)
+To download the GQA-it dataset, please refer to [https://github.com/crux82/gqa-it](https://github.com/crux82/gqa-it)
 
-The resource is developed by the [Semantic Analytics Group](http://sag.art.uniroma2.it) of
-the [University of Roma Tor Vergata](http://web.uniroma2.it/home). 
+The resource is a joint project developed by the [Semantic Analytics Group](http://sag.art.uniroma2.it) of
+the [University of Roma Tor Vergata](http://web.uniroma2.it/home) and the [CoLing Lab](https://colinglab.fileli.unipi.it) of the [University of Pisa](https://www.unipi.it). 
 You can download a copy of the dataset (distributed under the CC BY-SA 4.0 license).
 
-## Release format
+## Size of GQA-it
 
-The same format used in the SQuAD dataset is adopted: both train/test files are released in the following JSON format:
+The GQA-it dataset contains the following elements:
 
-```
-file.json
-├── "data"
-│   └── [i]
-│       ├── "paragraphs"
-│       │   └── [j]
-│       │       ├── "context": "paragraph text"
-│       │       └── "qas"
-│       │           └── [k]
-│       │               ├── "answers"
-│       │               │   └── [l]
-│       │               │       ├── "answer_start": N
-│       │               │       └── "text": "answer"
-│       │               ├── "id": "<uuid>"
-│       │               └── "question": "paragraph question?"
-│       └── "title": "document id"
-└── "version": 1.1
-```
-
-The Wikipedia articles are split into paragraphs, one or more questions are made about each paragraph. The training set contains exactly one answer for each question, the test set contains one or more answers for each question. One of the most important properties of the dataset is that the answers are part of the paragraph and thus can be expressed as indices of the paragraph tokens, i.e., context `[ answer_start : answer_start + len(text)]`.
-
-## Size of SQuAD-it
-
-The original SQuAD dataset contains the following elements:
-
-| Element | Training Set | Dev set |
+| Dataset | Images | Question/Answer Pairs |
 | -------------- | --------------: | --------------: |
-| Paragraphs  | 18 896 | 2 067 |
-| Questions  | 87 599 | 10 570 |
-|  Answers | 87 599 |34 726 |
+| train  | 72,140 | 943,000 |
+| valid  | 10,234 | 132,062 |
+| test-dev (silver) | 398 |12,578 |
+| test-dev (gold) | 398 | 3,000 |
+				
+
+## Evaluating a Neural Visual Question Answer System over GQA-it
+
+The [LXMERT](https://github.com/airsplay/lxmert) VQA neural system [tan and Bansal, 2019] was adapted to the Italian language. The system was trained on the automatically translated version of GQA [Hudson and Manning, 2019] in order to measure the performance of a state-of-the-art model on the GQA-it dataset. The reported results are obtained on a manually-validated Test Set odf 3,000 question-answer pairs (gold) and on the automatically translated resource (silver).
+More details and comparative results are described in [Croce et al. 2021]. 
 
 
-Automatic translation lead to nearly 90% of translated paragraph-question-answer triplets.  Some of these triplets were not translated due to unknown characters or low lexical  coverage of the translation system. In many cases, the answer was not part of the translated paragraph any more after the translation, which lead to cancellation of most of the translations and lead to  approximately 45% of the translated triplets w.r.t. the original dataset.
-
-Further corrections were made, such as exchange of the word order in the answer text, different morphological forms were looked for and others, and if such a modified answer was part of the paragraph, it was substituted. This increased the translated triplets to nearly 62% of the original.
-
-The final SQuAD-it contains the following elements:
-
-|  | Training Set IT	| Perc. w.r.t. SQuAD	| Test Set IT | Perc. w.r.t. SQuAD |	
-| --------- | :---------: | :-----: |:---------:  | :-----: |
-|	Paragraphs	|   18 506 | 97.9% | 2 010 | 97.2% | 
-|	Questions	| 54 159 |  61.8% |7 609 | 72.0% |
-|	Answers	| 54 159 |  61.8% |21 489 | 61.9%	|
-					
-
-## Evaluating a Neural Model over SQuAD-it
-
-The DrQA system [Chen et al. 2017] was adapted to the Italian language. The system was modified in order to be able to measure the performance on the SQuAD-it dataset. The evaluation script and the description of the measures used (Exact Match and Macro F1) is available on the original SQuAD website, <https://rajpurkar.github.io/SQuAD-explorer/> (version v1.0 was used). The results were obtained on the Test Set. 
+| | Accuracy |
+| --- | :---: |
+|Results over the Test  Set (gold) | 51.0 % |
+|Results over the Test  Set (silver) | 52.6 % |
 
 
-| |EM | F1 |
+## Example
+![](n90294.jpg)
+
+| Language | Question | Answer |
 | --- | :---: | :---: |
-|Results over the Test  Set |	56.1	| 65.9 |
- 
- More details can be found in [Croce et al. 2018].
+| En | Is the remote to the right or to the left of the book? | right |
+| It | _Il telecomando è a destra o a sinistra del libro?_ | _destra_ |
+| En | How thick is the book to the left of the remote? | thick | 
+| It | _Quanto è spesso il libro a sinistra del telecomando?_ | _spesso_ |
+| En | What device is to the left of the calculator made of plastic?| charger |
+| It | _Quale dispositivo si trova a sinistra della calcolatrice di plastica?_ | _caricabatterie_ |
+| En | What's the charger made of? | plastic |
+| It | _Di cosa è fatto il caricabatterie?_ | _plastica_ |
+| En | Are there any phones? | no |
+| It | _Ci sono dei telefoni?_ | _no_ |
 
 
-
-## Examples
-
-Few examples of the answers given by the DrQA-it trained on SQuAD-it are hereafter reported. 
-
-1. The answer to the question "*Dove si trovano le Isole Marshall?*"
-is correct - "*Pacifico*".
-
-	>* Question: Dove si trovano le Isole Marshall?
-	>* Answer: Pacifico
-	>* Sentence: Facente parte della Micronesia, le Isole Marshall sono un gruppo di atolli e isole situate nel **Pacifico**, poco a nord dell'equatore.
-	>* Wikipedia Page: Isole Marshall
-
-2. In this case, the answer to the question "*Quali sono gli stati che confinano con l'Austria?*" is "*Italia, Germania e Slovenia*", which is partially correct.
-	>* Question: Quali sono gli stati con cui confina l'Austria?
-	>* Answer: Italia, Germania e Slovenia
-	>* Sentence: Ma quattro direttrici nord-sud che collegano il paese con i principali stati confinanti (**Italia, Germania E Slovenia**).
-	>* Wikipedia Page: Austria
-
-
-3. The answer to the question "*Dov'è nato Virgilio?*" is "*Ulassai*", which is correct, if referring to Virglio Lai, an Italian photographer, even though most people would be referring to the more famous Publius Vergilius Maro, (Publio Virgilio Marone, or simply Virgilio in Italian) born near Mantova 70 B.C.
-
-	>* Question: Dove è nato Virgilio?
-	>* Answer: Ulassai
-	>* Sentence: Virgilio Lai (Ulassai, 1º Agosto 1926- Cagliari, 6 Aprile 2009) è fotografo del 1900 italiano.
-	>* Wikipedia Page: Virgilio Lai
-
-
+  
 ## References
 
-[Rajpurkar et al. 2016] Pranav Rajpurkar, Jian Zhang, Konstantin Lopyrev, Percy Liang *SQuAD: 100,000+ Questions for Machine Comprehension of Text* In the Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP) — November 1–5, 2016 — Austin, Texas, USA.
+[Hudson and Manning, 2019] Hudson, D. A., & Manning, C. D. (2019). Gqa: A new dataset for real-world visual reasoning and compositional question answering. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition (pp. 6700-6709).
 
-[Chen et al. 2017] Danqi Chen, Adam Fisch, Jason Weston and Antoine Bordes *Reading Wikipedia to Answer Open-Domain Questions.* In the Proceedings of the  Annual Meeting of the Association for Computational Linguistics (ACL), 2017 Vancouver
+[Tan and Bansal, 2019] Tan, H., & Bansal, M. (2019). Lxmert: Learning cross-modality encoder representations from transformers. arXiv preprint arXiv:1908.07490.
 
-[Croce et al. 2018] Danilo Croce, Alexandra Zelenanska, Roberto Basili *Neural Learning for Question Answering in Italian.* AI*IA 2018 -- Advances in Artificial Intelligence, 2018 Trento. pages 389-402
-
+[Croce et al. 2021] Croce, D., Passaro, L. C., Lenci, A., & Basili, R. (2021). GQA-it: Italian Question Answering on Image Scene Graphs.
 
 ## Contacts
 
 For any questions or suggestions, you can send an e-mail to <croce@info.uniroma2.it>
-
-More details will be also added to [http://sag.art.uniroma2.it/demo-software/squadit/](http://sag.art.uniroma2.it/demo-software/squadit/)
