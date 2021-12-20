@@ -81,7 +81,7 @@ More details and comparative results are described in [Croce et al. 2021].
 
 
 ## Example
-![](n90294.jpg)
+![](img/n90294.jpg)
 
 | Language | Question | Answer |
 | --- | :---: | :---: |
