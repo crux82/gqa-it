@@ -3,22 +3,24 @@
 
 GQA-it is a **large-scale Italian dataset for Visual Question Answering** based on the balanced version of [GQA](https://cs.stanford.edu/people/dorarad/gqa/about.html).
 
-GQA-it contains more than **1 million question/answer pairs in Italian over 80K images** obtained by applying Neural Machine Translation. $3,000$ question-answer pairs have been manually validated to provide a valuable benchmark.
+GQA-it contains more than **1 million question/answer pairs in Italian over 80K images** obtained by applying Neural Machine Translation. 
+
+Most importantly, a **Test set of 3,000 question-answer pairs has been manually validated to provide a valuable benchmark in Italian**.
 
 GQA-it has been used to adapt to Italian the [LXMERT](https://github.com/airsplay/lxmert) state-of-the-art VQA neural architecture, and the resuts have shown comparable results between English and Italian models. More details about GQA-it can be found in the original paper [Croce et al. 2021](http://ceur-ws.org/Vol-3033/paper42.pdf).
 
 
 This repository is organized as follows:
 
-* `train.json.gz` is a compressed version of the json training file. It contains training examples derived from the original GQA trainig material (balanced version). 
+* `train.json.gz` is a compressed version of the json training file. It contains training examples derived from the original GQA trainig material (balanced version).
 * `testdev3k_validated.json.gz` is a compressed file containing  3000 manually validated test/benchmarking examples derived from the origial GQA development material. 
-* `valid.json.gz` is a compressed version of the json development file derived from the original GQA validation material (balanced version)
-* `trainval_label2ans.json.gz`
-* `trainval_ans2label.json.gz`
+* `valid.json.gz` is a compressed version of the json development file derived from the original GQA validation material (balanced version).
+* `trainval_label2ans.json.gz` and `trainval_ans2label.json.gz` reflect the set of possible answers and they are required by LXMERT (that models the VQA process as a classification task).
+
+Please notice that the above files can be directly used to train an LXMERT model, as they are correspondingly formatted; please refer to the following [LINK](https://github.com/airsplay/lxmert#gqa). Most importantly each question/answer pair refers to the ID of the original image from the GQA dataset, so that you can downdload the correspoding [visual data](https://cs.stanford.edu/people/dorarad/gqa/download.html) or you can directly use the feature vector linked [HERE](https://github.com/airsplay/lxmert#gqa).
 
 
 ### How to cite GQA-it
-
 
 If you find GQA-it useful for your research, please cite the following paper:
 
@@ -68,7 +70,7 @@ The GQA-it dataset contains the following elements:
 
 ## Evaluating a Neural Visual Question Answer System over GQA-it
 
-The [LXMERT](https://github.com/airsplay/lxmert) VQA neural system [tan and Bansal, 2019] was adapted to the Italian language. The system was trained on the automatically translated version of GQA [Hudson and Manning, 2019] in order to measure the performance of a state-of-the-art model on the GQA-it dataset. The reported results are obtained on a manually-validated Test Set odf 3,000 question-answer pairs (gold) and on the automatically translated resource (silver).
+The [LXMERT](https://github.com/airsplay/lxmert) VQA neural system [Tan and Bansal, 2019] was adapted to the Italian language. The system was trained on the automatically translated version of GQA [Hudson and Manning, 2019] in order to measure the performance of a state-of-the-art model on the GQA-it dataset. The reported results are obtained on a manually-validated Test Set odf 3,000 question-answer pairs (gold) and on the automatically translated resource (silver).
 More details and comparative results are described in [Croce et al. 2021]. 
 
 
