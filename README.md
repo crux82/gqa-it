@@ -42,7 +42,8 @@ If you find GQA-it useful for your research, please cite the following paper:
   timestamp = {Wed, 15 Dec 2021 17:49:17 +0100},
   biburl    = {https://dblp.org/rec/conf/clic-it/CrocePL021.bib},
   bibsource = {dblp computer science bibliography, https://dblp.org}
-}~~~~
+}
+~~~~
 
 
 ## Download
