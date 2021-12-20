@@ -12,10 +12,11 @@ GQA-it has been used to adapt to Italian the [LXMERT](https://github.com/airspla
 
 This repository is organized as follows:
 
-* `train.json.gz` is a compressed version of the json training file. It contains training examples derived from the original GQA trainig material (balanced version).
-* `testdev3k_validated.json.gz` is a compressed file containing  3000 manually validated test/benchmarking examples derived from the origial GQA development material. 
-* `valid.json.gz` is a compressed version of the json development file derived from the original GQA validation material (balanced version).
-* `trainval_label2ans.json.gz` and `trainval_ans2label.json.gz` reflect the set of possible answers and they are required by LXMERT (that models the VQA process as a classification task).
+* `train.json.gz` is a compressed version of the json training file. It contains training examples derived from the original GQA trainig material (balanced version) available at the following [LINK](https://nlp.cs.unc.edu/data/lxmert_data/gqa/train.json).
+* `valid.json.gz` is a compressed version of the json development file derived from the original GQA validation material (balanced version) available at the following [LINK](https://nlp.cs.unc.edu/data/lxmert_data/gqa/valid.json).
+* `testdev.json.gz` is a compressed version of the json test/dev file derived from the original GQA test/validation material (balanced version) available at the following [LINK](https://nlp.cs.unc.edu/data/lxmert_data/gqa/testdev.json). This file is called `testdev` and not `test` since it does not reflect the official and complete English test material, which is not publicly available; however, this smaller dataset is defined to be representative of the entire test set and it is traditionally used to evaluate VQA systems. 
+* `testdev3k_validated.json.gz` is a compressed file containing  3000 manually validated test/benchmarking examples derived from the origial `testdev.json.gz`. 
+* `trainval_label2ans.json.gz` and `trainval_ans2label.json.gz` reflect the set of possible answers and they are required by LXMERT (that models the VQA process as a classification task).  
 
 Please notice that the above files can be directly used to train an LXMERT model, as they are correspondingly formatted; please refer to the following [LINK](https://github.com/airsplay/lxmert#gqa). Most importantly each question/answer pair refers to the ID of the original image from the GQA dataset, so that you can downdload the correspoding [visual data](https://cs.stanford.edu/people/dorarad/gqa/download.html) or you can directly use the feature vector linked [HERE](https://github.com/airsplay/lxmert#gqa).
 
